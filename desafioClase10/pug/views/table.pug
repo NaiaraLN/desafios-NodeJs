@@ -1,0 +1,17 @@
+extends layout.pug 
+
+block tabla 
+    h1="Vista de los productos"
+    if listProduct.length > 0
+        table 
+            tr 
+                th="Nombre"
+                th="Precio"
+                th="Foto"
+            tr 
+                each product in listProduct
+                    td= product.title 
+                    td= product.price 
+                    td= product.thumbnail 
+    else 
+        span="No hay productos"

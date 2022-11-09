@@ -1,0 +1,13 @@
+<h1>Vista de los productos</h1>
+{{#with listProduct}}
+<table style="background-color:black;">
+    <tr style="color: white;"> <th>Nombre</th> <th>Precio</th> <th>Foto</th> </tr>
+    <tr>
+        <td style="color: white;">{{title}}</td>
+        <td style="color: white;">{{price}}</td>
+        <td><img src={{thumbnail}} width="100px"></td>
+    </tr>
+</table>
+{{else}}
+<span style="color: red;">No hay productos</span>
+{{/with}}

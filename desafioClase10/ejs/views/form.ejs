@@ -1,0 +1,16 @@
+<%- include('./head')-%>
+<body>
+    <h1>Ingrese el producto</h1>
+    <form action="/productos" method="post">
+        <label for="title"><b>Nombre</b></label>
+        <input id="title" type="text" name="title">
+        <label for="price"><b>Precio</b></label>
+        <input id="price" type="number" name="price">
+        <label for="thumbnail"><b>URL</b></label>
+        <input id="thumbnail" type="url" name="thumbnail">
+        <button>Enviar</button>
+    </form>
+
+</body>
+
+<%- include('./foot')-%>

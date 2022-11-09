@@ -1,0 +1,9 @@
+extends layout.pug 
+
+block formulario 
+    h1="Ingrese el producto"
+    form(action="/productos", method="POST") 
+        input(id="title"  type="name", name="title", placeholder="title")
+        input(id="price" type="number", name="price", placeholder="price")
+        input(id="thumbnail" type="url", name="thumbnail", placeholder="url")
+        button(type="submit" placeholder="Enviar") 
