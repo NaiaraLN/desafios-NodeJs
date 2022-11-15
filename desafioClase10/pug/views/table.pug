@@ -12,6 +12,7 @@ block tabla
                 each product in listProduct
                     td= product.title 
                     td= product.price 
-                    td= product.thumbnail 
+                    td 
+                        img(src= product.thumbnail) 
     else 
         span="No hay productos"
