@@ -22,7 +22,6 @@ const handlebarsConfig = {
 app.engine("hbs", handlebars.engine((handlebarsConfig)));
 app.set('view engine', 'hbs');
 app.set('views', './views');
-//app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 
 let listProduct = [{title: "calculadora", price: 150, thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png"}];
