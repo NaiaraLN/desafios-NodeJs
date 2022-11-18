@@ -23,24 +23,35 @@ app.engine("hbs", handlebars.engine((handlebarsConfig)));
 app.set('view engine', 'hbs');
 app.set('views', './views');
 app.use(express.urlencoded({extended: true}))
-
-let listProduct = [{title: "calculadora", price: 150, thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png"}];
+app.use(express.static(__dirname + '/public'));
 
 app.get("/", (req, res) => {
-    res.render('table', {listProduct});
+    res.render('table');
 })
 
-
+let listProduct = [];
 let messages = []
 
 io.on('connection', (socket) => {
     console.log('Nuevo cliente conectado')
-    //socket.emit('products', listProduct)
+    socket.emit('products', listProduct)
     
     socket.on('new-product', product => {
-        listProduct.push(product);
-        console.log(product);
-        //io.sockets.emit('products', listProduct);
+        if (listProduct.length >= 1) {
+            let lastId = listProduct.reduce((acc, item) => item.id > acc ? acc = item.id : acc, 0)
+            let newProduct = {
+                id: lastId + 1,
+                ...product
+            }
+            listProduct.push(newProduct);
+        } else {
+            let newProduct = {
+                id: 1,
+                ...product
+            }
+            listProduct.push(newProduct);
+        }
+        io.emit('products', listProduct);
     })
     socket.emit('messages', messages)
 
@@ -52,7 +63,6 @@ io.on('connection', (socket) => {
     })
 
 })
-
 
 const server = httpServer.listen(8080, () => {
     console.log(`servidor conectado en puerto ${server.address().port}`)

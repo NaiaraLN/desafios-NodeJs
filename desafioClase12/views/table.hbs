@@ -1,19 +1,2 @@
 <h1>Vista de los productos</h1>
-{{#if listProduct.length}}
-    <table style="background-color:black;">
-        <tr style="color: white;"> 
-            <th>Nombre</th> 
-            <th>Precio</th> 
-            <th>Foto</th> 
-        </tr>
-        {{#each listProduct}}
-        <tr>
-            <td style="color: white;">{{this.title}}</td>
-            <td style="color: white;">{{this.price}}</td>
-            <td><img src={{this.thumbnail}} width="100px"></td>
-        </tr>
-        {{/each}}
-    </table>
-{{else}}
-    <span style="color: red;">No hay productos</span>
-{{/if}}
+<div id="listProducts"></div>
