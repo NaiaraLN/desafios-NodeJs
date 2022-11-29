@@ -1,5 +1,5 @@
 const options = {
-    client: 'mysql2',
+    client: 'mysql',
     connection: {
         user: 'root',
         password: '654321',
