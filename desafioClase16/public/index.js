@@ -9,32 +9,32 @@ socket.on("products", (list) => {
     } else {
         let prodTable = list.map(({title, price, thumbnail}) => {
             return `
-                <tr>
-                    <td style="color: white;" width="100px">${title}</td>
-                    <td style="color: white;" width="100px">${price}</td>
-                    <td width="100px"><img src=${thumbnail} width="60px"></td>
+                <tr class="table-tr">
+                    <td class="table-td">${title}</td>
+                    <td class="table-td">${price}</td>
+                    <td class="table-td"><img src=${thumbnail} width="60px"></td>
                 </tr>
             `
         });
         html = 
-        `<table style="background-color:black;">
-            <tr style="color: white;"> 
-                <th>Nombre</th> 
-                <th>Precio</th> 
-                <th>Stock</th>
-                <th>Foto</th> 
-            </tr>
+        `<table class="table">
+            <thead class="table-head">
+                <tr class="table-tr"> 
+                    <th class="table-th">Nombre</th> 
+                    <th class="table-th">Precio</th> 
+                    <th class="table-th">Foto</th> 
+                </tr>
+            </thead>
             ${prodTable}
         </table>`
         
     }
-
     allProducts.innerHTML = html;
 })
 
 //AGREGO PRODUCTOS
 function addProduct(e) {
-    e.preventDefault();
+    //e.preventDefault();
     const product = {
         title: document.getElementById('title').value,
         price: document.getElementById('price').value,
@@ -54,7 +54,6 @@ function showMessages(messages) {
     <ul>
     ${showMessages.join('\n')}
     </ul>`
-
     const listMessages = document.getElementById('messages')
     listMessages.innerHTML = messagesHtml
 
@@ -65,7 +64,8 @@ socket.on('messages', messages => {
 })
 
 function addMessage(e) {
-    e.preventDefault();
+    //e.preventDefault();
+    
     const inputMail = document.getElementById('mail')
     const inputMessage = document.getElementById('text')
     
@@ -78,4 +78,5 @@ function addMessage(e) {
     } else {
         alert('ingrese algun mensaje')
     }
+    return false;
 }

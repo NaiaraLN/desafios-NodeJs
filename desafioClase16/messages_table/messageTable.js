@@ -1,5 +1,6 @@
-const {sqlite} = require('./helpers/knexConnection');
+const {sqlite} = require('../helpers/knexConnection');
 // creo tabla de mensajes
+
 sqlite.schema
     .createTable("messages", (table) => {
         table.increments("id");

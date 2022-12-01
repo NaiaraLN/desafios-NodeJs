@@ -29,33 +29,32 @@ io.on('connection', (socket) => {
     //PRODUCTOS
     mdb.from('products').select('*')
     .then((prods) => socket.emit('products', prods))
-    .catch((err) => { console.log(err); throw err })
+    .catch((err) => console.log(err))
     
 
     socket.on('new-product', product => {
         mdb('products').insert(product)
-        .then(() => console.log("product inserted"))
+        .then(() => {
+            console.log('product inserted')
+            return mdb.from('products').select('*')
+        })
         .then((prods) => io.emit('products', prods))
-        
-        mdb.from('products').select('*')
-        .then((prods) => socket.emit('products', prods))
-        .catch((err) => { console.log(err); throw err })
+        .catch((err) => console.log(err))
     })
     
     //MENSAJES
     sqlite.from('messages').select('*')
         .then((msg) => socket.emit('messages', msg))
-        .catch((err) => { console.log(err); throw err })
+        .catch((err) => console.log(err))
     
     socket.on('newMessage', message => {
         message.date = new Date().toLocaleString()
-        mdb('messages').insert(message)
-        .then(() => console.log("message inserted"))
-        .then((msg) => io.emit('messages', msg))
-        
-        sqlite.from('messages').select('*')
-        .then((msg) => socket.emit('messages', msg))
-        .catch((err) => { console.log(err); throw err })
+        sqlite('messages').insert(message)
+        .then(() => {
+            console.log("message inserted")
+            return sqlite.from('messages').select('*')
+        }).then((msg) => io.emit('messages', msg))
+        .catch((err) => console.log(err))
     })
 })
 

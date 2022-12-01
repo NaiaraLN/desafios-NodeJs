@@ -4,27 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Handlebars</title>
 </head>
 <body>
-    <h1>Ingrese producto</h1>
-    <form onsubmit="return addProduct(this)">
-        <input type="name" id="title" name="title" placeholder="title">
-        <input type="number" id="price" name="price" placeholder="price">
-        <input type="url" id="thumbnail" name="thumbnail" placeholder="url">
-        <button type="submit">Enviar</button>
-    </form>
-    {{{body}}}
-    <h2>Centro de mensajes</h1>
-    <form onsubmit="return addMessage(this)">
-        <input type="mail" id="mail" placeholder="mail@mail.com" >
-        <input type="text" id="text" placeholder="Cuéntanos algo...">
-        <input type="submit" value="Enviar">
-    </form>
-    <div id="messages"></div>
+    <div class="container-fluid">
+        <div class="container-products">
+            <h1 class="form-title">Ingrese producto</h1>
+            <form onsubmit="return addProduct(this)" class="form">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="name" id="title" name="title" class="form-input" placeholder="nombre">
+                <label for="price" class="form-label">Precio</label>
+                <input type="number" id="price" name="price" class="form-input" placeholder="price">
+                <label for="thumbnail" class="form-label">Imagen</label>
+                <input type="url" id="thumbnail" name="thumbnail" class="form-input" placeholder="url">
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+            {{{body}}}
+        </div>
+        <div class="container-messages">
+            <h2 class="form-title">Centro de mensajes</h1>
+            <form onsubmit="return addMessage(this)" class="form">
+                <input type="mail" id="mail" class="form-input" placeholder="mail@mail.com" >
+                <input type="text" id="text" class="form-input" placeholder="Cuéntanos algo...">
+                <input type="submit" class="btn" value="Enviar">
+            </form>
+            <div id="messages" class="container-messages-list"></div>
+        </div>
+    </div>
     
     <script src="/socket.io/socket.io.js"></script>
-    <script src="index.js"></script>
+    <script src="/index.js"></script>
 </body>
 </html>
