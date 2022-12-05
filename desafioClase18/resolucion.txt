@@ -1,0 +1,178 @@
+docker run --name mongo-coder -p 2017:27017 -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=654321 -d mongo
+
+Creo base de datos
+use ecommerce
+
+1) Agrego los 10 documentos en las colecciones mensajes y productos
+
+db.mensajes.insertMany([
+... {mail:'juana@gmail.com',date:new Date(),text:'Hola!'},
+... {mail:'lucia@gmail.com',date: new Date(),text:'Hola'},
+... {mail:'juana@gmail.com',date:new Date(),text:'Como estas?'},
+... {mail:'lucia@gmail.com',date: new Date(),text:'Bien y vos?'},
+... {mail:'juana@gmail.com',date:new Date(),text:'Bien'},
+... {mail:'juana@gmail.com',date:new Date(),text:'Que haces?'},
+... {mail:'lucia@gmail.com',date: new Date(),text:'aca programando'},
+... {mail:'lucia@gmail.com',date: new Date(),text:'haciendo una tarea'},
+... {mail:'lucia@gmail.com',date: new Date(),text:'vos?'},
+... {mail:'juana@gmail.com',date:new Date(),text:'lo mismo jaja'}])
+
+ db.productos.insertMany([
+... {title:'Calculadora',price:650,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png'},
+... {title:'Regla',price:530,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png'},
+... {title:'Pizarron',price:2750,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/board-math-class-school-512.png'},
+... {title:'Cuaderno',price:1430,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/book-note-paper-school-512.png'},
+... {title:'Mochila',price:4450,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-512.png'},
+... {title:'Birrete',price:2100,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/graduation-square-academic-cap-school-512.png'}])
+
+db.productos.insertMany([
+... {title:'Lapices',price:780,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-512.png'},
+... {title:'Tabla de pintar',price:1250,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/paint-color-pallete-brush-academy-512.png'},
+... {title:'Globo Terraqueo',price:4720,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-512.png'},
+... {title:'Reloj',price:3880,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/clock-stopwatch-timer-time-512.png'}])
+
+3)Listar documentos de ambas colecciones
+
+ db.mensajes.find()
+ db.productos.find()
+
+4)Cantidad de documentos
+
+db.mensajes.countDocuments()
+10
+
+db.productos.countDocuments()
+10
+
+5) 
+    a)Agrego otro producto
+    db.productos.insertOne(
+... {title:'Tubo de ensayo',price:2500,thumbnail:'https://cdn3.iconfinder.com/data/icons/education-209/64/tube-lab-science-school-512.png'})
+
+    b)listo por nombre de producto específico
+        db.productos.findOne({title:'Regla'})
+    {
+    _id: ObjectId("638e6a5753b7173fc47d18a2"),
+    title: 'Regla',
+    price: 530,
+    thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png'
+    }
+    i)db.productos.find({price:{$lt:1000}})
+    [
+    {
+        _id: ObjectId("638e6a5753b7173fc47d18a1"),
+        title: 'Calculadora',
+        price: 650,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-512.png'
+    },
+    {
+        _id: ObjectId("638e6a5753b7173fc47d18a2"),
+        title: 'Regla',
+        price: 530,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png'
+    },
+    {
+        _id: ObjectId("638e6b7f53b7173fc47d18a7"),
+        title: 'Lapices',
+        price: 780,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-512.png'
+    }
+    ]
+
+    ii)db.productos.find({price:{$gt:1000,$lt:3000}})
+    [
+    {
+        _id: ObjectId("638e6a5753b7173fc47d18a3"),
+        title: 'Pizarron',
+        price: 2750,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/board-math-class-school-512.png'
+    },
+    {
+        _id: ObjectId("638e6a5753b7173fc47d18a4"),
+        title: 'Cuaderno',
+        price: 1430,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/book-note-paper-school-512.png'
+    },
+    {
+        _id: ObjectId("638e6a5753b7173fc47d18a6"),
+        title: 'Birrete',
+        price: 2100,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/graduation-square-academic-cap-school-512.png'
+    },
+    {
+        _id: ObjectId("638e6b7f53b7173fc47d18a8"),
+        title: 'Tabla de pintar',
+        price: 1250,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/paint-color-pallete-brush-academy-512.png'
+    },
+    {
+        _id: ObjectId("638e6ce553b7173fc47d18ab"),
+        title: 'Tubo de ensayo',
+        price: 2500,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/tube-lab-science-school-512.png'
+    }
+    ]
+
+    iii)db.productos.find({price:{$gt:3000}})
+    [
+    {
+        _id: ObjectId("638e6a5753b7173fc47d18a5"),
+        title: 'Mochila',
+        price: 4450,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-512.png'
+    },
+    {
+        _id: ObjectId("638e6b7f53b7173fc47d18a9"),
+        title: 'Globo Terraqueo',
+        price: 4720,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-512.png'
+    },
+    {
+        _id: ObjectId("638e6b7f53b7173fc47d18aa"),
+        title: 'Reloj',
+        price: 3880,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/education-209/64/clock-stopwatch-timer-time-512.png'
+    }
+    ]
+
+    iv)el 3er más barato
+    db.productos.find({},{title:1}).sort({price:1}).limit(1).skip(2)
+    [ { _id: ObjectId("638e6b7f53b7173fc47d18a7"), title: 'Lapices' } ]
+
+    c)agrego stock a los productos
+    db.productos.updateMany({},{$set:{stock:100}})
+    {
+    acknowledged: true,
+    insertedId: null,
+    matchedCount: 11,
+    modifiedCount: 11,
+    upsertedCount: 0
+    }
+
+    d)modifico el stock de los productos con precio mayor a 4000
+    db.productos.updateMany({price:{$gt:4000}},{$set:{stock:0}})
+    {
+    acknowledged: true,
+    insertedId: null,
+    matchedCount: 2,
+    modifiedCount: 2,
+    upsertedCount: 0
+    }
+
+    e)elimino los productos con precio menor a 1000
+    db.productos.deleteMany({price:{$lt:1000}})
+    { acknowledged: true, deletedCount: 3 }
+
+6)creo usuario
+db.createUser(
+... {user:"pepe",
+... pwd:"asd456",
+... roles:[
+... {role:"read",db:"ecommerce"}]})
+{ ok: 1 }
+
+Como usé docker, comprobé la funcionalidad del usuario con: docker exec -it mongo-coder mongosh -u pepe -p asd456 --authenticationDatabase ecommerce 
+
+intento actualizar un producto con ese usuario y me tira error, asi que únicamente puede leer los documentos de las colecciones
+
+
