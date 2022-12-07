@@ -6,8 +6,9 @@ const app = express();
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 
-const { mdb, sqlite} = require('./helpers/knexConnection');
-
+const ClientSql = require('./helpers/sql');
+const optionsProds = require('./options/mariaDB')
+const optionsMsg = require('./options/sqLite3');
 // Configuro views
 const handlebarsConfig = {
     extname: '.hbs',
@@ -23,37 +24,50 @@ app.get("/", (req, res) => {
     res.render('table');
 })
 
+const mdb = new ClientSql(optionsProds.options,'products')
+const sqlite = new ClientSql(optionsMsg.options, 'messages')
+
 // Hago conexiones con socket
 io.on('connection', (socket) => {
     console.log('Nuevo cliente conectado')
     //PRODUCTOS
-    mdb.from('products').select('*')
+    mdb.createTable()
+    .then(() => {
+        console.log('table "products" created')
+        return mdb.listAll() 
+    })
     .then((prods) => socket.emit('products', prods))
     .catch((err) => console.log(err))
     
 
     socket.on('new-product', product => {
-        mdb('products').insert(product)
+        mdb.insertAll(product)
         .then(() => {
             console.log('product inserted')
-            return mdb.from('products').select('*')
+            return mdb.listAll()
         })
         .then((prods) => io.emit('products', prods))
         .catch((err) => console.log(err))
     })
     
     //MENSAJES
-    sqlite.from('messages').select('*')
-        .then((msg) => socket.emit('messages', msg))
-        .catch((err) => console.log(err))
+    sqlite.createTable()
+    .then(() => {
+        console.log('table "messages" created')
+        return sqlite.listAll()
+    })
+    .then((msg) => socket.emit('messages', msg))
+    .catch((err) => console.log(err))
+    
     
     socket.on('newMessage', message => {
         message.date = new Date().toLocaleString()
-        sqlite('messages').insert(message)
+        sqlite.insertAll(message)
         .then(() => {
             console.log("message inserted")
-            return sqlite.from('messages').select('*')
-        }).then((msg) => io.emit('messages', msg))
+            return sqlite.listAll()
+        })
+        .then((msg) => io.emit('messages', msg))
         .catch((err) => console.log(err))
     })
 })

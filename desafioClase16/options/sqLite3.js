@@ -5,7 +5,7 @@ const options = {
     },
     useNullAsDefault: true
 }
-console.log(options)
+
 
 module.exports = {
     options

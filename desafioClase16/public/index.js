@@ -12,7 +12,7 @@ socket.on("products", (list) => {
                 <tr class="table-tr">
                     <td class="table-td">${title}</td>
                     <td class="table-td">${price}</td>
-                    <td class="table-td"><img src=${thumbnail} width="60px"></td>
+                    <td class="table-td"><img src=${thumbnail} width="200px"></td>
                 </tr>
             `
         });
