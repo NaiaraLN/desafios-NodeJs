@@ -85,8 +85,22 @@ fetch('http://localhost:8080/api/productos-test')
 
 //MUESTRO MENSAJES
 function showMessages(messages, porcent) {
-    const showMessages = messages.map(({ avatar, id, text }) => {
-        return `<img src=${avatar} width="40px"><li>${id} : ${text}</li>`
+    const allMessages = messages.messages
+    let allAuthors = []
+    allMessages.forEach(element => {
+        let text = element.text
+        let authors = element.author
+        for (let index = 0; index < authors.length; index++) {
+            const element = authors[index];
+            let message = {
+                text,
+                ...element
+            }
+            allAuthors.push(message)
+        }
+    });
+    const showMessages = allAuthors.map(({ avatar, id, text }) => {
+        return `<li><img src=${avatar} class="avatar" width="40px">${id} : ${text}</li>`
     })
 
     const messagesHtml = `
@@ -105,26 +119,34 @@ function messagesPorcent(porcent){
     subtitle.innerHTML = html;
 }
 
+/* ENTIDADES DE LOS MENSAJES */
+
 const authorSchema = new normalizr.schema.Entity('authors',{},{idAttribute:'id'});
 const message = new normalizr.schema.Entity('messages', {
     author: [authorSchema]
 },{idAttribute:'_id'});
+const posts = new normalizr.schema.Entity('posts',{messages: [message]});
 
 const denormalizeMsg = (norMessages) =>{
-    const denormalizedMessages = normalizr.denormalize(norMessages.result,message,norMessages.entities);
+    const denormalizedMessages = normalizr.denormalize(norMessages.result,posts,norMessages.entities);
     console.log(denormalizedMessages)
 
+    /* LONGITUD Y PORCENTAJES */
     const longO = JSON.stringify(denormalizedMessages).length;
     console.log("Longitud objeto desnormalizado: ", longO);
 
     const longN = JSON.stringify(norMessages).length;
     console.log("Longitud objeto normalizado: ", longN);
+
     const porcentajeC = (longN * 100) / longO;
+
     let porcentajeTotal = porcentajeC.toFixed(2) + "%"
     console.log("Porcentaje de compresión: ", porcentajeTotal);
+
     return showMessages(denormalizedMessages, porcentajeTotal)
 }
 
+/* TRAIGO ARRAY DE MENSAJES NORMALIZADOS */
     fetch('http://localhost:8080/api/mensajes')
     .then((respuesta) => {
         console.log(respuesta)

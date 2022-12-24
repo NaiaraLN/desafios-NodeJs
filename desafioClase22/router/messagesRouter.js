@@ -35,10 +35,14 @@ routerMessages.post('/', async (req,res) =>{
 routerMessages.get('/', async (req,res) =>{
     try {
         let allMessages = await apiMessages.getAll('messages')
-        allMessages.id = 'mensajes'
         let json = JSON.stringify(allMessages)
         let msgs = JSON.parse(json)
-        let norMessages = await apiMessages.normalize(msgs) 
+        let obj = {
+            id: 'mensajes',
+            messages: [...msgs]
+        }
+        
+        let norMessages = await apiMessages.normalize(obj) 
         res.json(norMessages)
     } catch (error) {
         console.log(`se produjo un error al obtener los mensajes ${error}`);
