@@ -93,7 +93,7 @@ app.use('/info', infoRouter)
 const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true}
 app.use(session({
     store: MongoStore.create({
-        mongoUrl:`mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.1ezwxyq.mongodb.net/sesionesDesafio?retryWrites=true&w=majority`, 
+        mongoUrl:`mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.1ezwxyq.mongodb.net/sesionesDesafio?retryWrites=true&w=majority`, 
         mongoOptions:advancedOptions,
         ttl:600
     }),
@@ -147,8 +147,6 @@ app.get('/logout', (req, res) =>{
 })
 
 
-
-//const PORT = 8080
 const server = app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${server.address().port}`)
 })
