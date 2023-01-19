@@ -1,19 +1,7 @@
 import express from 'express';
-import handlebars from "express-handlebars";
 import randomRouter from './router/randomRouter.js';
 
 const app = express();
-
-//configuro handlebars
-const handlebarsConfig = {
-    extname: '.hbs',
-    defaultLayout: 'index.hbs'
-};
-app.engine("hbs", handlebars.engine((handlebarsConfig)));
-app.set('view engine', 'hbs');
-app.set('views', './views');
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
 
 app.use('/api/randoms', randomRouter)
 
