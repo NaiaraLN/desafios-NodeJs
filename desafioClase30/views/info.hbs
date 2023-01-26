@@ -1,0 +1,23 @@
+<div>
+    <ul>
+        <li>Argumentos de entrada:
+            {{#if args.length}}
+                <ol type="a">
+                    {{#each args}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ol>
+            {{else}}
+                No hay argumentos
+            {{/if}}
+        </li>
+        <li>Nombre de la plataforma: {{info.platform}}</li>
+        <li>Versión de node: {{info.version}}</li>
+        <li>Memoria total reservada: {{info.memory}}</li>
+        <li>Path de ejecución: {{info.path}}</li>
+        <li>Process id: {{info.id}}</li>
+        <li>Carpeta del proyecto: {{info.dirname}}</li>
+        <li>CPUs: {{info.cpus}}</li>
+    </ul>
+    
+</div>

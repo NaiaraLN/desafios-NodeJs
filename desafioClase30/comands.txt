@@ -1,0 +1,40 @@
+En mi caso el cluster levanta 4 subprocesos
+
+NODEMON
+    FORK
+    nodemon server.js -p 8080 -m FORK 
+    o sin el -m 
+    nodemon server.js -p 8080
+
+    CLUSTER
+    nodemon server.js -p 8081 -m CLUSTER
+
+FOREVER
+    FORK
+    forever start server.js -p 8081 -m FORK
+    o sin el -m
+    forever start server.js -p 8081 
+
+    CLUSTER
+    forever start server.js -p 8081 -m CLUSTER
+
+    forever list 
+    forever logs server.js
+
+PM2
+    FORK
+    pm2 start server.js --name="Server fork" --watch -- -p 8080 -m FORK
+    o sin el -m 
+    pm2 start server.js --name="Server fork" --watch -- -p 8080
+
+    CLUSTER
+    pm2 start server.js --name="Server cluster" --watch -i max -- -p 8081 -m CLUSTER
+    
+
+    pm2 list
+    pm2 logs
+
+
+EN SERVER2.js
+
+usar "node server2.js 8081 CLUSTER" o "pm2 start server2.js --name"Server cluster" --watch -i max -- 8081 CLUSTER"

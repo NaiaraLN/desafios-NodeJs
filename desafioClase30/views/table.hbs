@@ -1,0 +1,37 @@
+
+    <div class="container-products">
+        <div>
+            <h1>Bienvenido {{userName}}</h1>
+            <button id="logout" type="submit" class="btn" onclick="location.href='/logout'">Desloguearse</button>
+        </div>
+        <h2 class="form-title">Ingrese producto</h2>
+        <form action="/api/productos" method="post" class="form">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="name" id="title" name="title" class="form-input" placeholder="nombre">
+        <label for="price" class="form-label">Precio</label>
+        <input type="number" id="price" name="price" class="form-input" placeholder="price">
+        <label for="thumbnail" class="form-label">Imagen</label>
+        <input type="url" id="thumbnail" name="thumbnail" class="form-input" placeholder="url">
+        <button type="submit" class="btn">Enviar</button>
+        </form>
+        
+        <h1 class="form-title">Vista de los productos</h1>
+        <div id="listProducts" class="container-table"></div>
+        <h2 class="form-title">Vista de los productos del formulario</h2>
+        <div id="listProductsForm" class="container-table"></div>
+    </div>
+    <div class="container-messages">
+        <h2 class="form-title">Centro de mensajes</h2>
+        <h3 id="porcentaje"></h3>
+        <form action="/api/mensajes" method="post" class="form">
+            <input type="email" id="mail" name="email" class="form-input" placeholder="mail@mail.com" >
+            <input type="text" id="name" name="name" class="form-input" placeholder="nombre">
+            <input type="text" id="lastname" name="lastname" class="form-input" placeholder="apellido">
+            <input type="number" id="age" name="age" class="form-input" placeholder="edad">
+            <input type="text" id="alias" name="alias" class="form-input" placeholder="alias">
+            <input type="url" id="avatar" name="avatar" class="form-input" placeholder="avatar">
+            <input type="text" id="text" name="text" class="form-input" placeholder="Cuéntanos algo...">
+            <input type="submit" class="btn" value="Enviar">
+        </form>
+        <div id="messages" class="container-messages-list"></div>
+    </div>
