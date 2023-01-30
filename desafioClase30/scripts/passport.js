@@ -31,7 +31,7 @@ passport.use('login', new LocalStrategy(async (username,password,done) => {
         return done(null, false)
     }
     const userPws = user.password
-    if(isValidPassword(userPws, password)){
+    if(!isValidPassword(userPws, password)){
         return done(null, false)
     }
     return done(null, user)
