@@ -21,8 +21,6 @@ infoRouter.get('/con', compression(),(req,res) => {
         dirname: process.cwd(),
         cpus: os.cpus().length
     }
-    // console.log({args, info})
-    //res.json({args, info})
     res.render('info', {args, info})
 })
 infoRouter.get('/', (req,res) => {
@@ -43,7 +41,6 @@ infoRouter.get('/', (req,res) => {
         cpus: os.cpus().length
     }
     //console.log({args, info})
-    //res.json({args, info})
     res.render('info', {args, info})
 })
 
