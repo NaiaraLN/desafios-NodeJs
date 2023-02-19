@@ -7,7 +7,7 @@ export class FormProdController extends FormProdService{
         res.redirect('/')
     }
 
-    static async getProducts(req,res){
+    static async getProd(_,res){
         let allProducts = await this.getProducts()
         res.json(allProducts)
     }

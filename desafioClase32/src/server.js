@@ -29,7 +29,7 @@ app.set('view engine', 'hbs');
 app.set('views', './views');
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(express.static(_dirname + '/public'));
+app.use(express.static(_dirname + '../public'));
 
 // configuro las sesiones con Mongo Atlas
 const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true}

@@ -5,7 +5,7 @@ export class ProdMockService {
     static createProds(){
         const products = apiProducts.popular()
         if (products) {
-            return {status: succes, description: 'productos creados con éxito'}
+            return {status: 'success', description: 'productos creados con éxito'}
         }else{
             logger.error(`Se produjo un error al crear los productos ${err}`)
         }

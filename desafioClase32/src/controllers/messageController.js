@@ -7,7 +7,7 @@ export class MessageController extends MessageService{
         res.redirect('/')
     }
 
-    static async get(){
+    static async get(_,res){
         const norMessages = await this.getMsg()
         res.json(norMessages)
     }
