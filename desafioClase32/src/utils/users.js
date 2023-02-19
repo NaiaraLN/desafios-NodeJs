@@ -1,5 +1,5 @@
 import userModel from "../model/userModel.js";
-import ContainerMongoDB from "../containers/containerMongoDB.js";
+import ContainerMongoDB from "../persistence/containers/containerMongoDB.js";
 
 class User extends ContainerMongoDB{
     constructor(connection){

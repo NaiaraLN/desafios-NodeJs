@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import messageModel from '../model/messageModel.js'
-import logger from '../scripts/logger.js'
+import messageModel from '../../model/messageModel.js'
+import logger from '../../scripts/logger.js'
 
 mongoose.set("strictQuery", false);
 

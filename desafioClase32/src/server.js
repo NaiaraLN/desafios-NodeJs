@@ -4,19 +4,17 @@ import localProdRouter from './router/formProductsRouter.js';
 import {routerProducts} from './router/productRoutes.js'
 import routerMessages from './router/messagesRouter.js';
 import infoRouter from './router/infoRouter.js';
+import passportRouter from './router/passportRouter.js';
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import passport from 'passport';
-import {port, mode} from "./utils/port.js"
+import {port, mode} from "./config/yargs_config.js"
 import {USERNAME, PASSWORD} from "./config/config.js"
 import cluster from 'cluster';
 import os from 'os'
-
+import logger from './scripts/logger.js';
 // configuro _dirname
 import {URL} from 'url'
-import passportRouter from './router/passportRouter.js';
-import logger from './scripts/logger.js';
-
 const _dirname = decodeURI(new URL('.', import.meta.url).pathname)
 
 const app = express()
@@ -49,7 +47,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.use((req,res,next) => {
+    const { url, method } = req
+    logger.info(`Ruta ${method} ${url} implementada`)
+    next()
+})
 app.use('/api/productos-test', routerProducts);
 app.use('/api/mensajes', routerMessages);
 app.use('/api/productos', localProdRouter);
@@ -61,7 +63,6 @@ app.all('*', (req, res) => {
     logger.warn(`Ruta ${method} ${url} no implementada`)
     res.send(`Ruta ${method} ${url} no está implementada`)
 })
-
 
 const modoCluster = mode === 'CLUSTER'
 if (modoCluster && cluster.isPrimary) {

@@ -1,6 +1,6 @@
 import { normalize, schema } from "normalizr";
 import util from 'util'
-import ContainerMongoDB from "../containers/containerMongoDB.js";
+import ContainerMongoDB from "../persistence/containers/containerMongoDB.js";
 
 
 const authorSchema = new schema.Entity('authors',{},{idAttribute:'_id'});

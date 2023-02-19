@@ -1,6 +1,6 @@
-import{ createProduct } from "../utils/createProducts.js";
-import{ createId } from "../utils/createId.js";
-import logger from '../scripts/logger.js'
+import{ createProduct } from "../../mocks/createProducts.js";
+import{ createId } from "../../utils/createId.js";
+import logger from '../../scripts/logger.js'
 
 class ContenedorMemoria {
 
