@@ -17,7 +17,7 @@ export class PassportController{
         res.render('login-error')
     }
 
-    static getLogout(req,res){
+    static getLogout(req,res, next){
         req.logout(function(err) {
             if (err) { return next(err); }
             res.redirect('/login');

@@ -1,5 +1,4 @@
-let id = 1
-function createId() {
+function createId(id) {
     return id++
 }
 export {createId}

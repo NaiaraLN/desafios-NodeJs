@@ -1,4 +1,5 @@
 import { MessageService } from "../services/messageService.js";
+import MessageDTO from "../dto/messageDTO.js";
 
 export class MessageController extends MessageService{
     static async postMsg(req,res){
@@ -8,7 +9,8 @@ export class MessageController extends MessageService{
     }
 
     static async get(_,res){
-        const norMessages = await this.getMsg()
+        const messages = await this.getMsg()
+        const norMessages = new MessageDTO(messages)
         res.json(norMessages)
     }
 }

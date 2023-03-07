@@ -1,15 +1,14 @@
+import {MONGO_URI, port, mode} from "./config/config.js"
 import express from 'express';
 import handlebars from "express-handlebars";
+import MongoStore from 'connect-mongo'
+import passport from 'passport';
 import localProdRouter from './router/formProductsRouter.js';
 import {routerProducts} from './router/productRoutes.js'
 import routerMessages from './router/messagesRouter.js';
 import infoRouter from './router/infoRouter.js';
 import passportRouter from './router/passportRouter.js';
 import session from 'express-session'
-import MongoStore from 'connect-mongo'
-import passport from 'passport';
-import {port, mode} from "./config/yargs_config.js"
-import {USERNAME, PASSWORD} from "./config/config.js"
 import cluster from 'cluster';
 import os from 'os'
 import logger from './scripts/logger.js';
@@ -35,7 +34,7 @@ app.use(express.static(_dirname + '../public'));
 const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true}
 app.use(session({
     store: MongoStore.create({
-        mongoUrl:`mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.1ezwxyq.mongodb.net/sesionesDesafio?retryWrites=true&w=majority`, 
+        mongoUrl:MONGO_URI, 
         mongoOptions:advancedOptions,
         ttl:600
     }),

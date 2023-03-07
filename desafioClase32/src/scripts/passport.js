@@ -1,17 +1,15 @@
-import {USERNAME, PASSWORD} from "../config/config.js"
 import passport from "passport";
 import  {Strategy as LocalStrategy} from 'passport-local';
-import User from '../utils/users.js'
+import { MongoDAO } from "../model/mongoDAO.js";
 import bCrypt from 'bcrypt'
-
-const userDB = new User(`mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.1ezwxyq.mongodb.net/ecommerce?retryWrites=true&w=majority`)
+import User from "../model/usersDAO.js";
 
 /* -------------PASSPORT-------------- */
 passport.use('register', new LocalStrategy({
     passReqToCallback:true
 }, async (req,username,password, done) => {
     const {mail} = req.body
-    const userdb = await userDB.getUser(username)
+    const userdb = await MongoDAO.getUser(username, 'users')
     if (userdb ==! null || userdb ==! undefined) {
         return done('already registered')
     }
@@ -20,13 +18,13 @@ passport.use('register', new LocalStrategy({
         mail: mail,
         password: createHash(password)
     }
-    await userDB.saveUser(newUser)
-    const user = await userDB.getUser(username)
+    await MongoDAO.save('users', newUser)
+    const user = await MongoDAO.getUser(username, 'users')
     return done(null, user)
 }));
 
 passport.use('login', new LocalStrategy(async (username,password,done) => {
-    const user = await userDB.getUser(username)
+    const user = await MongoDAO.getUser(username, 'users')
     if (!user) {
         return done(null, false)
     }
@@ -52,16 +50,5 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-    userDB.model.findById(id, done);
+    User.userModel.findById(id, done);
 });
-
-/* ---AUTH--- */
-function isAuth(req, res, next) {
-    if (req.isAuthenticated()) {
-        next()
-    } else {
-        res.redirect('/login')
-    }
-}
-
-export default isAuth;

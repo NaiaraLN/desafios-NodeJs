@@ -1,14 +1,14 @@
 import fs from "fs"
 import {URL} from 'url'
-import logger from "../../scripts/logger.js"
+import logger from "../scripts/logger.js"
 
 const _dirname = decodeURI(new URL('.', import.meta.url).pathname)
-const path = _dirname +'/../../api/'
-class Contenedor {
+const path = _dirname +'/../api/'
+
+class FileDAO {
     constructor (name){
         this.fileName = name
     }
-
     save = async (product) => {
         try {
             if (fs.existsSync(path+this.fileName)) {
@@ -39,6 +39,7 @@ class Contenedor {
             if (fs.existsSync(path+this.fileName)) {
                 const products = await fs.promises.readFile(path+this.fileName)
                 let product = JSON.parse(products)
+                console.log(product)
                 return product
             }
         } catch (error) {
@@ -48,4 +49,4 @@ class Contenedor {
 
 }
 
-export default Contenedor
+export default FileDAO

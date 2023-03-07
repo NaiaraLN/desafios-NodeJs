@@ -1,16 +1,13 @@
-import {USERNAME, PASSWORD} from '../config/config.js'
 import logger from '../scripts/logger.js'
-import {MessageEntity} from '../utils/messagesEntity.js';
-
-const apiMessages = new MessageEntity(`mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.1ezwxyq.mongodb.net/ecommerce?retryWrites=true&w=majority`)
-apiMessages.getConnection()
+import { MongoDAO } from '../model/mongoDAO.js'
 
 export class MessageService{
     static async saveMsg(user, text){
         try {
-            let generateId = 1
+            let allMessages = await MongoDAO.getAll('messages')
+            let lastId = allMessages.reduce((acc, item) => item.id > acc ? acc = item.id : acc, 0)
             let author = {
-                _id:user.email,
+                id:user.user,
                 nombre:user.name,
                 apellido:user.lastname,
                 edad:user.age,
@@ -18,11 +15,10 @@ export class MessageService{
                 avatar:user.avatar
             }
             let message={
-                _id: generateId++,
                 author: author ,
                 text:text
             }
-            return await apiMessages.save('messages', message)
+            return await MongoDAO.save('messages', message)
         } catch (error) {
             logger.error(`se produjo un error al guardar los mensajes ${error}`);
         }
@@ -30,15 +26,15 @@ export class MessageService{
     }
     static async getMsg(){
         try {
-            let allMessages = await apiMessages.getAll('messages')
+            let allMessages = await MongoDAO.getAll('messages')
+            console.log(allMessages)
             let json = JSON.stringify(allMessages)
             let msgs = JSON.parse(json)
             let obj = {
                 id: 'mensajes',
                 messages: [...msgs]
             }
-            let norMessages = apiMessages.normalize(obj) 
-            return norMessages
+            return obj
         } catch (error) {
             logger.error(`se produjo un error al obtener los mensajes ${error}`);
         }

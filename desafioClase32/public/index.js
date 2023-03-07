@@ -84,6 +84,7 @@ fetch('http://localhost:8080/api/productos-test')
 
 //MUESTRO MENSAJES
 function showMessages(messages, porcent) {
+    console.log(messages)
     const allMessages = messages.messages
     let allAuthors = []
     allMessages.forEach(element => {
@@ -127,8 +128,7 @@ const message = new normalizr.schema.Entity('messages', {
 const posts = new normalizr.schema.Entity('posts',{messages: [message]});
 
 const denormalizeMsg = (norMessages) =>{
-    const denormalizedMessages = normalizr.denormalize(norMessages.result,posts,norMessages.entities);
-    console.log(denormalizedMessages)
+    const denormalizedMessages = normalizr.denormalize(norMessages.result,message,norMessages.entities);
 
     /* LONGITUD Y PORCENTAJES */
     const longO = JSON.stringify(denormalizedMessages).length;

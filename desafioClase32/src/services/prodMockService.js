@@ -1,9 +1,11 @@
 import logger from '../scripts/logger.js';
-import { apiProducts } from '../persistence/index.js';
+import ArrayDAO from '../model/arrayDAO.js';
+
+const arrayDAO = new ArrayDAO()
 
 export class ProdMockService {
     static createProds(){
-        const products = apiProducts.popular()
+        const products = arrayDAO.popular()
         if (products) {
             return {status: 'success', description: 'productos creados con éxito'}
         }else{
@@ -11,7 +13,7 @@ export class ProdMockService {
         }
     }
     static getProds(){
-        const products = apiProducts.listarAll()
+        const products = arrayDAO.getAll()
         if (products) {
             return products
         }else{

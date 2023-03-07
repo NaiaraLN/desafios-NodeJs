@@ -1,4 +1,4 @@
-import { FormProdService } from "../services/formProdService.js";
+import FormProdService from "../services/formProdService.js";
 
 export class FormProdController extends FormProdService{
     static async postProd(req,res){
@@ -9,6 +9,7 @@ export class FormProdController extends FormProdService{
 
     static async getProd(_,res){
         let allProducts = await this.getProducts()
+        console.log(allProducts)
         res.json(allProducts)
     }
 }

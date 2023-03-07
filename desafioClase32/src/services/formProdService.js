@@ -1,27 +1,12 @@
-import { containerFS } from '../persistence/index.js';
-import logger from '../scripts/logger.js'
+import Repository from "./repository.js"
+import PersistenceFactory from "../model/persistenceFactory.js"
 
-
-export class FormProdService {
-    static async save(title, price, thumbnail){
-        try {
-            let product = {
-                title: title,
-                price: price,
-                thumbnail: thumbnail
-            };
-            return await containerFS.save(product)
-        } catch (error) {
-            logger.error(`error al guardar los productos ${error}`)
-        }
-    }
-
-    static async getProducts(){
-        try {
-            let allProducts = await containerFS.getAll()
-            return allProducts
-        } catch (error) {
-            logger.error(`error al traer los productos ${error}`)
-        }
+//const dao = PersistenceFactory.getPersistence()
+class FormProdService extends Repository{
+    constructor(){
+        super(PersistenceFactory.getPersistence())
     }
 }
+
+
+export default FormProdService
