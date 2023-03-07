@@ -128,7 +128,7 @@ const message = new normalizr.schema.Entity('messages', {
 const posts = new normalizr.schema.Entity('posts',{messages: [message]});
 
 const denormalizeMsg = (norMessages) =>{
-    const denormalizedMessages = normalizr.denormalize(norMessages.result,message,norMessages.entities);
+    const denormalizedMessages = normalizr.denormalize(norMessages.result,posts,norMessages.entities);
 
     /* LONGITUD Y PORCENTAJES */
     const longO = JSON.stringify(denormalizedMessages).length;
