@@ -1,11 +1,10 @@
 import logger from "../scripts/logger.js";
 export default class Repository{
     constructor(dao){
-        console.log(dao)
         this.dao = dao
     }
 
-    static async save(title, price, thumbnail){
+    async save(title, price, thumbnail){
         try {
             let product = {
                 title: title,
@@ -17,7 +16,7 @@ export default class Repository{
             logger.error(`error al guardar los productos ${error}`)
         }
     }
-    static async getProducts(){
+    async getProducts(){
         try {
             let allProducts = await this.dao.getAll()
             return allProducts

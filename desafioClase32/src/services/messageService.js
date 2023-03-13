@@ -1,5 +1,5 @@
 import logger from '../scripts/logger.js'
-import { MongoDAO } from '../model/mongoDAO.js'
+import { MongoDAO } from '../model/mongoDao/mongoDAO.js'
 
 export class MessageService{
     static async saveMsg(user, text){

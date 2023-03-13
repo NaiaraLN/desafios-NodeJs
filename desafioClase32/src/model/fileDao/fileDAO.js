@@ -1,6 +1,6 @@
 import fs from "fs"
 import {URL} from 'url'
-import logger from "../scripts/logger.js"
+import logger from "../../scripts/logger.js"
 
 const _dirname = decodeURI(new URL('.', import.meta.url).pathname)
 const path = _dirname +'/../api/'

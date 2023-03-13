@@ -1,8 +1,8 @@
-import { MONGO_URI } from '../config/config.js';
+import { MONGO_URI } from '../../config/config.js';
 import mongoose from 'mongoose';
 import Messages from './messageDAO.js'
 import User from './usersDAO.js';
-import logger from '../scripts/logger.js'
+import logger from '../../scripts/logger.js'
 
 mongoose.set("strictQuery", false);
 
@@ -45,9 +45,7 @@ class MongoDBDao {
         try {
             if (collection) {
                 let newObj = new this.models[collection](object)
-                console.log(newObj)
                 let save = await newObj.save()
-                console.log(save)
                 return save
             }
         } catch (error) {

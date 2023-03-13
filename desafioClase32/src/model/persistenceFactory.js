@@ -1,6 +1,6 @@
 import { persistence } from "../config/config.js";
-import ArrayDAO from "./arrayDAO.js";
-import FileDAO from "./fileDAO.js";
+import ArrayDAO from "./arrayDao/arrayDAO.js";
+import FileDAO from "./fileDao/fileDAO.js";
 
 class PersistenceFactory {
     static getPersistence = () => {

@@ -107,3 +107,6 @@
 {"level":"error","message":"error al traer los productos TypeError: Cannot read properties of undefined (reading 'getAll')"}
 {"level":"error","message":"error al traer los productos TypeError: Cannot read properties of undefined (reading 'getAll')"}
 {"level":"error","message":"error al traer los productos TypeError: Cannot read properties of undefined (reading 'getAll')"}
+{"level":"error","message":"Error en login de usuario"}
+{"level":"error","message":"Error en login de usuario"}
+{"level":"error","message":"Error en login de usuario"}

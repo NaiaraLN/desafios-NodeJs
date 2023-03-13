@@ -1,5 +1,5 @@
 import logger from '../scripts/logger.js';
-import ArrayDAO from '../model/arrayDAO.js';
+import ArrayDAO from '../model/arrayDao/arrayDAO.js';
 
 const arrayDAO = new ArrayDAO()
 

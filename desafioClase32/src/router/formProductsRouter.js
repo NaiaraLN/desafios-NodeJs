@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { FormProdController } from "../controllers/formProdController.js";
+import FormProdController from "../controllers/formProdController.js";
 
 const localProdRouter = Router()
 
