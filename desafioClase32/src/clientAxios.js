@@ -6,23 +6,10 @@ const url = 'http://localhost:8080/api/productos-test'
 axios.post(url)
     .then(result => console.log(result.data))
     .catch(error => logger.error(`Error al crear los productos ${error}`))
-/* 
-axios.delete('http://localhost:8080/api/productos-test/2')
-    .then(result => console.log(result.data))
-    .catch(error => logger.error(`error al borrar producto ${error}`)) 
 
- */
-/* 
-axios(url)
+axios.get(url)
     .then(result => console.log(result.data))
     .catch(error => logger.error(`Error al traer los productos ${error}`))
- */
-
-/* axios.delete('http://localhost:8080/api/productos-test')
-    .then(result => console.log(result.data))
-    .catch(error => logger.error(`Error al borrar los productos ${error}`))
-
- */
 
 
 axios.put('http://localhost:8080/api/productos-test/5',{
@@ -33,3 +20,15 @@ axios.put('http://localhost:8080/api/productos-test/5',{
     })
     .then(result => console.log(result.data))
     .catch(error => console.log(error))
+
+axios.delete('http://localhost:8080/api/productos-test/2')
+    .then(result => console.log(result.data))
+    .catch(error => logger.error(`error al borrar producto ${error}`)) 
+
+
+axios.delete('http://localhost:8080/api/productos-test')
+    .then(result => console.log(result.data))
+    .catch(error => logger.error(`Error al borrar los productos ${error}`))
+
+
+
