@@ -110,3 +110,11 @@
 {"level":"error","message":"Error en login de usuario"}
 {"level":"error","message":"Error en login de usuario"}
 {"level":"error","message":"Error en login de usuario"}
+{"level":"error","message":"Error al traer los productos Error: connect ECONNREFUSED 127.0.0.1:8080"}
+{"level":"error","message":"Error al traer los productos AxiosError: Request failed with status code 500"}
+{"level":"error","message":"Error al traer los productos AxiosError: Request failed with status code 500"}
+{"level":"error","message":"error al borrar producto AxiosError: Request failed with status code 500"}
+{"level":"error","message":"Error al borrar los productos AxiosError: Request failed with status code 500"}
+{"level":"error","message":"Error al borrar los productos AxiosError: Request failed with status code 500"}
+{"level":"error","message":"Error al crear los productos Error: connect ECONNREFUSED 127.0.0.1:8080"}
+{"level":"error","message":"error al borrar producto Error: connect ECONNREFUSED 127.0.0.1:8080"}

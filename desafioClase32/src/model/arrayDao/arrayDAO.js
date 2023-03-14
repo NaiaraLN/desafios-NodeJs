@@ -12,8 +12,8 @@ class ArrayDAO {
         let cant = 5
         const newProducts = [];
         for (let i = 0; i < cant; i++) {
-            const newProduct = createProduct(createId(1));
-            const saveProduct = this.guardar(newProduct);
+            const newProduct = createProduct();
+            const saveProduct = this.save(newProduct)
             newProducts.push(saveProduct);
         }
         return newProducts;
@@ -43,6 +43,25 @@ class ArrayDAO {
         }else{
             logger.error('error al guardar el producto')
         }
+    }
+    update(id,newProduct){
+        let index = this.elementos.findIndex((el) => el.id == id);
+        console.log(index)
+        if (index >= 0) {
+            this.elementos[index] = newProduct;
+        }
+        return newProduct
+    }
+    delete(id) {
+        const index = this.elementos.findIndex((el) => el.id == id)
+        console.log(index)
+        if (index > -1) {
+            this.elementos.splice(index, 1)
+        }
+        return this.getAll()
+    }
+    deleteAll() {
+        return this.elementos = []
     }
 
 }

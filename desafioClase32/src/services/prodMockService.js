@@ -20,4 +20,16 @@ export class ProdMockService {
             logger.error(`Se produjo un error al obtener los productos ${err}`)
         }
     }
+    static update(id,newProduct){
+        const product = arrayDAO.update(id,newProduct)
+        return product
+    }
+    static deleteById(id){
+        const products = arrayDAO.delete(id)
+        return products
+    }
+    static delete(){
+        return arrayDAO.deleteAll()
+
+    }
 }

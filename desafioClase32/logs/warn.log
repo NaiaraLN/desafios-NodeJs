@@ -227,3 +227,67 @@
 {"level":"warn","message":"Ruta GET /favicon.ico no implementada"}
 {"level":"warn","message":"Ruta GET /favicon.ico no implementada"}
 {"level":"warn","message":"Ruta GET /favicon.ico no implementada"}
+{"level":"error","message":"Error al traer los productos Error: connect ECONNREFUSED 127.0.0.1:8080"}
+{"level":"error","message":"Error al traer los productos AxiosError: Request failed with status code 500"}
+{"level":"error","message":"Error al traer los productos AxiosError: Request failed with status code 500"}
+{"level":"error","message":"error al borrar producto AxiosError: Request failed with status code 500"}
+{"level":"warn","message":"Ruta PUT /api/productos-test no implementada"}
+{"level":"error","message":"Error al borrar los productos AxiosError: Request failed with status code 500"}
+{"level":"error","message":"Error al borrar los productos AxiosError: Request failed with status code 500"}
+{"level":"error","message":"Error al crear los productos Error: connect ECONNREFUSED 127.0.0.1:8080"}
+{"level":"error","message":"error al borrar producto Error: connect ECONNREFUSED 127.0.0.1:8080"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}
+{"level":"warn","message":"Ruta GET /api/products-test no implementada"}
+{"level":"warn","message":"Ruta POST /api/products-test no implementada"}
+{"level":"warn","message":"Ruta PUT /api/products-test/5 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test/2 no implementada"}
+{"level":"warn","message":"Ruta DELETE /api/products-test no implementada"}

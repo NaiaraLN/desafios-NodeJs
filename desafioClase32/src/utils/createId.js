@@ -1,4 +1,4 @@
 function createId(id) {
-    return id++
+    return id+1
 }
 export {createId}

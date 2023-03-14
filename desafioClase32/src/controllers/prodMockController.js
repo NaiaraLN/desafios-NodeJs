@@ -9,4 +9,20 @@ export class ProdMockController extends ProdMockService{
         const products = this.getProds()
         res.json(products)
     }
+    static put(req,res){
+        let id = JSON.parse(req.params.id)
+        let product = req.body
+        const newProduct = this.update(id,product)
+        res.json(newProduct)
+    }
+    static deleteId(req,res){
+        let id = req.params.id
+        console.log(id)
+        const products = this.deleteById(JSON.parse(id))
+        res.json(products)
+    }
+    static deleteAll(_,res){
+        const response = this.delete()
+        res.send(response)
+    }
 }
