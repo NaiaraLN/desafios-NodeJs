@@ -1,7 +1,7 @@
 import os from 'os'
 
 export class InfoService{
-    static getInfo(){
+    getInfo(){
         const args = [];
         for (let i = 2; i < process.argv.length; i++) {
             const el = process.argv[i];
@@ -16,6 +16,6 @@ export class InfoService{
             dirname: process.cwd(),
             cpus: os.cpus().length
         }
-        return {args, info}
+        return info
     }
 }

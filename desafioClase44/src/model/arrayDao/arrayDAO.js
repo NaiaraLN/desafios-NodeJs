@@ -8,15 +8,14 @@ class ArrayDAO {
         this.elementos = []
     }
 
-    popular() {
-        let cant = 5
+    popular(cant) {
         const newProducts = [];
         for (let i = 0; i < cant; i++) {
             const newProduct = createProduct();
             const saveProduct = this.save(newProduct)
             newProducts.push(saveProduct);
         }
-        return newProducts;
+        return this.getAll();
     }
 
     getAll() {

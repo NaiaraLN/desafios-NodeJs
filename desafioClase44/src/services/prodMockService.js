@@ -3,16 +3,16 @@ import ArrayDAO from '../model/arrayDao/arrayDAO.js';
 
 const arrayDAO = new ArrayDAO()
 
-export class ProdMockService {
-    static createProds(){
-        const products = arrayDAO.popular()
+export default class ProdMockService {
+    createProds(cant){
+        const products = arrayDAO.popular(cant)
         if (products) {
             return products
         }else{
             logger.error(`Se produjo un error al crear los productos ${err}`)
         }
     }
-    static getProds(){
+    getProds(){
         const products = arrayDAO.getAll()
         if (products) {
             return products
@@ -20,15 +20,15 @@ export class ProdMockService {
             logger.error(`Se produjo un error al obtener los productos ${err}`)
         }
     }
-    static update(id,newProduct){
+    update(id,newProduct){
         const product = arrayDAO.update(id,newProduct)
         return product
     }
-    static deleteById(id){
+    deleteById(id){
         const products = arrayDAO.delete(id)
         return products
     }
-    static delete(){
+    delete(){
         return arrayDAO.deleteAll()
 
     }

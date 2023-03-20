@@ -3,7 +3,7 @@ import {URL} from 'url'
 import logger from "../../scripts/logger.js"
 
 const _dirname = decodeURI(new URL('.', import.meta.url).pathname)
-const path = _dirname +'/../api/'
+const path = _dirname +'/../../api/'
 
 class FileDAO {
     constructor (name){

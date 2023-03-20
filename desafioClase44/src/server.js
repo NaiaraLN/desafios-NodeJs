@@ -2,18 +2,17 @@ import { MONGO_URI,port, mode} from "./config/config.js"
 import express from 'express';
 import MongoStore from 'connect-mongo'
 import passport from 'passport';
-import localProdRouter from './router/formProductsRouter.js';
-import {routerProducts} from './router/productRoutes.js'
-import routerMessages from './router/messagesRouter.js';
-import infoRouter from './router/infoRouter.js';
+import { graphqlHTTP } from 'express-graphql'
+import compression from 'compression'
+import FormProdController from './controllers/formProdController.js';
+import ProdMockController from './controllers/prodMockController.js'
+import MessageController from './controllers/messageController.js';
+import InfoController from './controllers/infoController.js';
 import passportRouter from './router/passportRouter.js';
 import session from 'express-session'
 import cluster from 'cluster';
 import os from 'os'
 import logger from './scripts/logger.js';
-// configuro _dirname
-import {URL} from 'url'
-const _dirname = decodeURI(new URL('.', import.meta.url).pathname)
 
 const app = express()
 app.use(express.json())
@@ -38,11 +37,30 @@ app.use((req,res,next) => {
     logger.info(`Ruta ${method} ${url} implementada`)
     next()
 })
-app.use('/api/productos-test', routerProducts);
-app.use('/api/mensajes', routerMessages);
-app.use('/api/productos', localProdRouter);
 app.use('/', passportRouter);
-app.use('/info', infoRouter)
+app.use('/api/productos-test', graphqlHTTP({
+    schema: ProdMockController.schema(),
+    root:ProdMockController.root(),
+    graphiql: true
+}));
+
+app.use('/api/mensajes', graphqlHTTP({
+    schema:MessageController.schema(),
+    rootValue:MessageController.root(),
+    graphiql:true
+}));
+
+app.use('/api/productos', graphqlHTTP({
+    schema:FormProdController.schema(), 
+    rootValue:FormProdController.root(),
+    graphiql: true}));
+
+
+app.use('/info', compression(),graphqlHTTP({
+    schema: InfoController.schema(),
+    rootValue: InfoController.root(),
+    graphiql: true
+}))
 
 app.all('*', (req, res) => {
     const { url, method } = req

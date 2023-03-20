@@ -6,14 +6,14 @@ class FormProdController extends FormProdService{
         type Product {
             id: Int,
             title: String,
-            price: Number,
+            price: Int,
             thumbnail: String
         }
         type Query{
             products: [Product]
         }
         type Mutation{
-            postProduct(title:String, price: Number, thumbnail:String): Product
+            postProduct(title:String, price: Int, thumbnail:String): Product
         }
         `)
     }

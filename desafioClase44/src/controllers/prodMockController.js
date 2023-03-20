@@ -1,20 +1,20 @@
-import { ProdMockService } from "../services/prodMockService.js";
+import ProdMockService from "../services/prodMockService.js";
 import { buildSchema } from 'graphql'
-export class ProdMockController extends ProdMockService{
+class ProdMockController extends ProdMockService{
     schema(){
         return buildSchema(`
         type Product{
             id:Int,
             title: String,
-            price: Number,
+            price: String,
             thumbnail: String
         }
         type Query{
             products: [Product]
         }
         type Mutation{
-            createProducts: [Product],
-            updateProd(id:Int, title:String,price:Number,thumbnail:String): Product,
+            createProds(cant:Int): [Product],
+            updateProd(id:Int, title:String,price:String,thumbnail:String): Product,
             deleteId(id:Int): [Product],
             deleteAll: [Product]
         }
@@ -23,7 +23,7 @@ export class ProdMockController extends ProdMockService{
     root(){
         const root ={
             products: () => this.getProds(),
-            createProducts: () => this.createProds(),
+            createProds: (cant) => this.createProds(cant),
             updateProd: (data) => this.update(data.id,data),
             deleteId: (id) => this.deleteById(id),
             deleteAll: () => this.delete()
@@ -31,3 +31,5 @@ export class ProdMockController extends ProdMockService{
         return root
     }
 }
+
+export default new ProdMockController()

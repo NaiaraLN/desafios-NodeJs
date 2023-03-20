@@ -1,13 +1,13 @@
 import logger from '../scripts/logger.js'
 import { MongoDAO } from '../model/mongoDao/mongoDAO.js'
 
-export class MessageService{
-    static async saveMsg(user, text){
+export default class MessageService{
+    async saveMsg(user, text){
         try {
             let allMessages = await MongoDAO.getAll('messages')
             let lastId = allMessages.reduce((acc, item) => item.id > acc ? acc = item.id : acc, 0)
             let author = {
-                id:user.user,
+                id:user.email,
                 nombre:user.name,
                 apellido:user.lastname,
                 edad:user.age,
@@ -24,17 +24,17 @@ export class MessageService{
         }
         
     }
-    static async getMsg(){
+    async getMsg(){
         try {
             let allMessages = await MongoDAO.getAll('messages')
             console.log(allMessages)
             let json = JSON.stringify(allMessages)
             let msgs = JSON.parse(json)
-            let obj = {
+            /* let obj = {
                 id: 'mensajes',
                 messages: [...msgs]
-            }
-            return obj
+            } */
+            return msgs
         } catch (error) {
             logger.error(`se produjo un error al obtener los mensajes ${error}`);
         }

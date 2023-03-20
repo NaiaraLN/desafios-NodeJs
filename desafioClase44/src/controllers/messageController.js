@@ -1,19 +1,27 @@
-import { MessageService } from "../services/messageService.js";
+import MessageService from "../services/messageService.js";
 import { buildSchema } from 'graphql'
 import MessageDTO from "../dto/messageDTO.js";
 
-export class MessageController extends MessageService{
+class MessageController extends MessageService{
     schema(){
         return buildSchema(`
+        type Author{
+            id: String,
+            nombre:String,
+            apellido:String,
+            edad:Int,
+            alias:String,
+            avatar:String
+        }
         type Message {
-            author: Array,
+            author: [Author],
             text: String
         }
         type Query{
             messages: [Message]
         }
         type Mutation{
-            postMessage(email:String, name:String, lastname:String, age:Number, alias:String, avatar:String, text:String): Message
+            postMessage(email:String, name:String, lastname:String, age:Int, alias:String, avatar:String, text:String): Message
         }
         `)
     }
@@ -32,7 +40,10 @@ export class MessageController extends MessageService{
 
     async get(){
         const messages = await this.getMsg()
-        const norMessages = new MessageDTO(messages)
-        return norMessages
+        return messages
+        /* const norMessages = new MessageDTO(messages)
+        return norMessages */
     }
 }
+
+export default new MessageController()
