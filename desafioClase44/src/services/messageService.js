@@ -7,7 +7,7 @@ export default class MessageService{
             let allMessages = await MongoDAO.getAll('messages')
             let lastId = allMessages.reduce((acc, item) => item.id > acc ? acc = item.id : acc, 0)
             let author = {
-                id:user.email,
+                id:user.user,
                 nombre:user.name,
                 apellido:user.lastname,
                 edad:user.age,
